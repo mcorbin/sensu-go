@@ -68,4 +68,3 @@ deploy:
   prerelease: true
   on:
     appveyor_repo_tag: true
-    good_to_deploy: true

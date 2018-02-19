@@ -226,8 +226,6 @@ function wait_for_appveyor_jobs {
     }
 
     if (!$success) {throw "Test jobs were not finished in $env:TIME_OUT_MINS minutes"}
-
-    $env:good_to_deploy = "true"
 }
 
 function build_package([string]$package, [string]$arch)
