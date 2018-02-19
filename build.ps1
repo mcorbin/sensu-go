@@ -301,7 +301,7 @@ ElseIf ($cmd -eq "integration") {
     integration_test_commands
 }
 ElseIf ($cmd -eq "wait_for_appveyor_jobs") {
-    If ($env:APPVEYOR_REPO_TAG -eq true) {
+    If ($env:APPVEYOR_REPO_TAG -eq $true) {
         $env:GOARCH = "amd64"
         build_command "agent"
 
@@ -312,7 +312,7 @@ ElseIf ($cmd -eq "wait_for_appveyor_jobs") {
     }
 }
 ElseIf ($cmd -eq "package_agent") {
-    If ($env:APPVEYOR_REPO_TAG -eq true) {
+    If ($env:APPVEYOR_REPO_TAG -eq $true) {
         build_package "agent" "x64"
         build_package "agent" "x86"
     }
