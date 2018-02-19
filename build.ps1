@@ -301,17 +301,21 @@ ElseIf ($cmd -eq "integration") {
     integration_test_commands
 }
 ElseIf ($cmd -eq "wait_for_appveyor_jobs") {
-    $env:GOARCH = "amd64"
-    build_command "agent"
+    If ($env:APPVEYOR_REPO_TAG -eq true) {
+        $env:GOARCH = "amd64"
+        build_command "agent"
 
-    $env:GOARCH = "386"
-    build_command "agent"
+        $env:GOARCH = "386"
+        build_command "agent"
 
-    wait_for_appveyor_jobs
+        wait_for_appveyor_jobs
+    }
 }
 ElseIf ($cmd -eq "package_agent") {
-    build_package "agent" "x64"
-    build_package "agent" "x86"
+    If ($env:APPVEYOR_REPO_TAG -eq true) {
+        build_package "agent" "x64"
+        build_package "agent" "x86"
+    }
 }
 Else {
     install_deps
